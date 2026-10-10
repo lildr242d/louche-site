@@ -1,0 +1,507 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ᗰᖇ ᒪᗴ ᒪᗝᑌᑕᕼᗴ — MÉTHODE 1000% SUCCÈS</title>
+<style>
+  :root{
+    --noir:#0a0510;
+    --violet:#1a0b2e;
+    --violet-clair:#2d1454;
+    --or:#d4af37;
+    --or-clair:#f5d76e;
+    --texte:#e8e0f0;
+    --rouge:#8b1a1a;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  body{
+    font-family:'Georgia','Times New Roman',serif;
+    background:var(--noir);color:var(--texte);
+    overflow-x:hidden;min-height:100vh;
+  }
+  button{font-family:inherit;cursor:pointer;}
+
+  /* ===== ENTRÉE ===== */
+  #entree{
+    position:fixed;inset:0;z-index:9999;
+    background:
+      radial-gradient(circle at 20% 30%, rgba(45,20,84,.55), transparent 55%),
+      radial-gradient(circle at 80% 70%, rgba(26,11,46,.85), transparent 60%),
+      linear-gradient(160deg,#0a0510 0%,#1a0b2e 50%,#0a0510 100%);
+    display:flex;flex-direction:column;align-items:center;justify-content:center;
+    text-align:center;padding:24px;
+    transition:opacity .9s ease, visibility .9s ease;
+  }
+  #entree.sortie{opacity:0;visibility:hidden;pointer-events:none;}
+  .titre-entree{
+    font-size:clamp(1.6rem,5vw,3.2rem);letter-spacing:3px;color:var(--or);
+    text-shadow:0 0 18px rgba(212,175,55,.55),0 0 4px rgba(245,215,110,.9);
+    margin-bottom:14px;line-height:1.2;
+  }
+  .sous-titre{
+    font-size:clamp(.85rem,2.4vw,1.1rem);color:#b9a5d8;
+    letter-spacing:2px;margin-bottom:38px;font-style:italic;
+  }
+  .btn-entrer{
+    background:linear-gradient(145deg,#2d1454,#1a0b2e);
+    color:var(--or-clair);border:1.5px solid var(--or);
+    padding:16px 38px;font-size:clamp(.85rem,2.2vw,1rem);
+    letter-spacing:2.5px;border-radius:2px;transition:all .35s ease;
+  }
+  .btn-entrer:hover{
+    background:linear-gradient(145deg,#3a1a6b,#2d1454);
+    box-shadow:0 0 30px rgba(212,175,55,.45);
+    transform:translateY(-2px);
+  }
+  #flash{
+    position:fixed;inset:0;z-index:9998;
+    background:radial-gradient(circle,#f5d76e33,#0a0510 70%);
+    opacity:0;pointer-events:none;transition:opacity .5s ease;
+  }
+  #flash.actif{opacity:1;}
+
+  /* ===== PRINCIPAL ===== */
+  #principal{display:none;min-height:100vh;padding:32px 16px 90px;
+    background:
+      radial-gradient(circle at 15% 10%, rgba(45,20,84,.35), transparent 45%),
+      radial-gradient(circle at 85% 90%, rgba(45,20,84,.35), transparent 45%),
+      var(--noir);
+  }
+  #principal.visible{display:block;}
+  .entete{
+    text-align:center;margin-bottom:40px;padding-bottom:20px;
+    border-bottom:1px solid rgba(212,175,55,.25);
+  }
+  .entete h1{
+    font-size:clamp(1.1rem,3.6vw,1.9rem);color:var(--or);letter-spacing:3px;
+    text-shadow:0 0 14px rgba(212,175,55,.5);
+  }
+  .entete p{margin-top:8px;color:#9a86bd;font-size:.82rem;letter-spacing:2px;font-style:italic;}
+
+  .feed{max-width:780px;margin:0 auto;display:flex;flex-direction:column;gap:44px;}
+
+  .post{
+    background:linear-gradient(160deg,rgba(26,11,46,.6),rgba(10,5,16,.8));
+    border:1px solid rgba(212,175,55,.22);border-radius:4px;
+    padding:26px 18px;
+    box-shadow:0 8px 40px rgba(0,0,0,.6),inset 0 0 30px rgba(45,20,84,.25);
+    overflow-wrap:break-word;
+  }
+  .deco{
+    color:var(--or);text-align:center;
+    font-size:clamp(.72rem,2.3vw,1rem);letter-spacing:1px;line-height:1.5;
+    margin:6px 0;text-shadow:0 0 10px rgba(212,175,55,.45);
+    word-break:break-word;
+  }
+  .deco-2{color:var(--or-clair);}
+  .contenu{
+    color:var(--texte);font-size:clamp(.95rem,2.4vw,1.1rem);
+    line-height:1.75;text-align:center;padding:22px 8px;
+    white-space:pre-wrap;letter-spacing:.4px;
+  }
+  .signature{
+    text-align:center;color:var(--or-clair);
+    font-size:clamp(.75rem,2.1vw,.95rem);letter-spacing:1px;
+    margin-top:6px;text-shadow:0 0 8px rgba(245,215,110,.4);
+    word-break:break-word;
+  }
+  .btn-copier{
+    display:block;margin:20px auto 0;background:transparent;color:var(--or);
+    border:1.3px solid var(--or);padding:11px 26px;font-size:.8rem;
+    letter-spacing:2.5px;border-radius:2px;transition:all .3s ease;
+  }
+  .btn-copier:hover{background:rgba(212,175,55,.12);box-shadow:0 0 22px rgba(212,175,55,.4);}
+  .btn-copier.copie{background:var(--or);color:var(--noir);border-color:var(--or-clair);}
+
+  .vide{text-align:center;color:#7a6899;font-style:italic;padding:60px 20px;letter-spacing:1.5px;}
+
+  footer{
+    text-align:center;margin-top:70px;padding-top:24px;
+    border-top:1px solid rgba(212,175,55,.18);
+    color:#6b5a8a;font-size:.75rem;letter-spacing:2px;
+  }
+
+  /* ===== CADENAS ===== */
+  #cadenas{
+    position:fixed;bottom:14px;right:14px;
+    background:transparent;border:none;color:#3a2a55;
+    font-size:1.2rem;opacity:.35;transition:all .3s ease;
+    z-index:100;padding:8px;
+  }
+  #cadenas:hover{opacity:1;color:var(--or);}
+
+  /* ===== MODALES ===== */
+  .overlay{
+    position:fixed;inset:0;z-index:1000;
+    background:rgba(5,2,10,.85);backdrop-filter:blur(6px);
+    display:none;align-items:center;justify-content:center;padding:20px;
+  }
+  .overlay.actif{display:flex;}
+  .modale{
+    background:linear-gradient(160deg,#1a0b2e,#0a0510);
+    border:1.5px solid var(--or);border-radius:4px;
+    padding:30px 24px;max-width:520px;width:100%;
+    box-shadow:0 0 60px rgba(212,175,55,.25);
+    max-height:88vh;overflow-y:auto;
+  }
+  .modale h2{
+    color:var(--or);text-align:center;letter-spacing:3px;
+    font-size:1.1rem;margin-bottom:22px;
+    text-shadow:0 0 12px rgba(212,175,55,.5);
+  }
+  .modale input[type="password"],
+  .modale input[type="text"],
+  .modale textarea{
+    width:100%;background:rgba(10,5,16,.8);color:var(--texte);
+    border:1px solid rgba(212,175,55,.4);border-radius:2px;
+    padding:12px 14px;font-family:inherit;font-size:.95rem;
+    margin-bottom:14px;outline:none;transition:border .3s;
+  }
+  .modale textarea{min-height:180px;resize:vertical;line-height:1.6;}
+  .modale input:focus,.modale textarea:focus{border-color:var(--or-clair);}
+  .modale .actions{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;}
+  .btn{
+    background:linear-gradient(145deg,#2d1454,#1a0b2e);
+    color:var(--or-clair);border:1.3px solid var(--or);
+    padding:11px 22px;font-size:.8rem;letter-spacing:2px;
+    border-radius:2px;transition:all .3s ease;
+  }
+  .btn:hover{background:linear-gradient(145deg,#3a1a6b,#2d1454);box-shadow:0 0 20px rgba(212,175,55,.4);}
+  .btn.danger{border-color:#c0392b;color:#e88;}
+  .btn.danger:hover{background:rgba(192,57,43,.15);box-shadow:0 0 20px rgba(192,57,43,.4);}
+  .btn.fermer{background:transparent;border-color:#555;color:#999;}
+  .erreur{color:#e88;font-size:.8rem;text-align:center;margin-bottom:12px;letter-spacing:1px;min-height:1em;}
+
+  .liste-admin{display:flex;flex-direction:column;gap:14px;margin-bottom:20px;}
+  .item-admin{
+    border:1px solid rgba(212,175,55,.25);border-radius:3px;
+    padding:12px;background:rgba(10,5,16,.5);
+  }
+  .item-admin .apercu{
+    color:#c8b8e0;font-size:.85rem;line-height:1.5;
+    max-height:70px;overflow:hidden;margin-bottom:10px;
+    white-space:pre-wrap;word-break:break-word;
+  }
+  .item-admin .btns{display:flex;gap:8px;}
+  .item-admin .btns button{flex:1;padding:7px;font-size:.72rem;letter-spacing:1.5px;}
+
+  @media (max-width:480px){
+    .post{padding:20px 12px;}
+    #principal{padding:24px 12px 70px;}
+    .modale{padding:24px 16px;}
+  }
+</style>
+</head>
+<body>
+
+<div id="flash"></div>
+
+<!-- ENTRÉE -->
+<section id="entree">
+  <h1 class="titre-entree">ᗰᖇ ᒪᗴ ᒪᗝᑌᑕᕼᗴ</h1>
+  <p class="sous-titre">MÉTHODE — 1000% SUCCÈS</p>
+  <button class="btn-entrer" id="btnEntrer">[ ENTRER DANS LA CHAÎNE ]</button>
+</section>
+
+<!-- PRINCIPAL -->
+<main id="principal">
+  <header class="entete">
+    <h1>ᗰᖇ ᒪᗴ ᒪᗝᑌᑕᕼᗴ MÉTHODE</h1>
+    <p>⚖️ La chaîne de la réussite absolue ⚖️</p>
+  </header>
+
+  <div class="feed" id="feed"></div>
+
+  <footer>╰┈➤ ⚖️ BY ᗰᖇ ᒪᗴ ᒪᗝᑌᑕᕼᗴ ᴶᴿ 🐦‍🔥</footer>
+</main>
+
+<!-- CADENAS (accès admin) -->
+<button id="cadenas" title="Accès admin" aria-label="Accès admin">🔒</button>
+
+<!-- MODALE LOGIN -->
+<div class="overlay" id="overlayLogin">
+  <div class="modale">
+    <h2>⚖️ ACCÈS ADMIN ⚖️</h2>
+    <p class="erreur" id="errLogin"></p>
+    <input type="password" id="inputMdp" placeholder="Mot de passe" autocomplete="current-password">
+    <div class="actions">
+      <button class="btn" id="btnValiderLogin">VALIDER</button>
+      <button class="btn fermer" data-fermer>ANNULER</button>
+    </div>
+  </div>
+</div>
+
+<!-- MODALE DASHBOARD -->
+<div class="overlay" id="overlayDash">
+  <div class="modale">
+    <h2>⚖️ DASHBOARD ⚖️</h2>
+    <p class="erreur" id="errDash"></p>
+
+    <textarea id="zoneTexte" placeholder="Écris ton texte ici...&#10;La décoration sera appliquée automatiquement."></textarea>
+    <input type="hidden" id="editId">
+    <div class="actions" style="margin-bottom:22px;">
+      <button class="btn" id="btnPublier">PUBLIER</button>
+      <button class="btn fermer" id="btnAnnulerEdit" style="display:none;">ANNULER ÉDITION</button>
+    </div>
+
+    <div style="border-top:1px solid rgba(212,175,55,.2);padding-top:18px;">
+      <p style="color:#9a86bd;font-size:.78rem;letter-spacing:2px;text-align:center;margin-bottom:14px;">
+        POSTS PUBLIÉS
+      </p>
+      <div class="liste-admin" id="listeAdmin"></div>
+      <div class="actions">
+        <button class="btn fermer" data-fermer>FERMER</button>
+        <button class="btn danger" id="btnLogout">DÉCONNEXION</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+/* ===== DÉCORATION OFFICIELLE (NE PAS MODIFIER) ===== */
+const DECO_HAUT_1 = "_*◤⛧࿈♱══════⚖️══════════♱࿈⛧◥*_";
+const DECO_HAUT_2 = "_*✮⃟⃝۝⫘⫘⫘⚖️ ⚖️️⫘⫘⫘⚖️⃝🐦‍🔥*_";
+const DECO_BAS    = "_*◣⛧࿈♱══════⚖️══════════♱࿈⛧◢*_";
+const SIGNATURE   = "> ╰┈➤⚖️ᗷY ᗰᖇ ᒪᗴ ᒪᗝᑌᑕᕼᗴᴶᴿ🐦‍🔥⃟𖤐⃟🐦‍🔥";
+
+function blocACopier(texte){
+  return [DECO_HAUT_1, DECO_HAUT_2, "", texte, "", DECO_BAS, SIGNATURE].join("\n");
+}
+
+/* ===== ÉTAT ===== */
+let POSTS = [];
+let estAdmin = false;
+
+/* ===== API ===== */
+const api = {
+  async getPosts(){ return (await fetch('/api/posts')).json(); },
+  async moi(){ return (await fetch('/api/moi')).json(); },
+  async login(mdp){
+    const r = await fetch('/api/login',{
+      method:'POST',headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({motdepasse:mdp})
+    });
+    return { ok: r.ok, data: await r.json() };
+  },
+  async logout(){ await fetch('/api/logout',{method:'POST'}); },
+  async creer(texte){
+    const r = await fetch('/api/posts',{
+      method:'POST',headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({texte})
+    });
+    return { ok: r.ok, data: await r.json() };
+  },
+  async modifier(id, texte){
+    const r = await fetch('/api/posts/'+id,{
+      method:'PUT',headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({texte})
+    });
+    return { ok: r.ok, data: await r.json() };
+  },
+  async supprimer(id){
+    const r = await fetch('/api/posts/'+id,{method:'DELETE'});
+    return r.ok;
+  }
+};
+
+/* ===== RENDU FEED ===== */
+function rendreFeed(){
+  const feed = document.getElementById('feed');
+  feed.innerHTML = '';
+  if(POSTS.length === 0){
+    feed.innerHTML = '<p class="vide">Aucun contenu publié pour le moment.</p>';
+    return;
+  }
+  POSTS.forEach(post => {
+    const bloc = document.createElement('article');
+    bloc.className = 'post';
+
+    const d1 = document.createElement('div');
+    d1.className = 'deco'; d1.textContent = DECO_HAUT_1;
+
+    const d2 = document.createElement('div');
+    d2.className = 'deco deco-2'; d2.textContent = DECO_HAUT_2;
+
+    const c = document.createElement('div');
+    c.className = 'contenu'; c.textContent = post.texte;
+
+    const d3 = document.createElement('div');
+    d3.className = 'deco'; d3.textContent = DECO_BAS;
+
+    const sig = document.createElement('div');
+    sig.className = 'signature'; sig.textContent = SIGNATURE;
+
+    const btn = document.createElement('button');
+    btn.className = 'btn-copier';
+    btn.textContent = '[ COPIER LE CODE ]';
+    btn.addEventListener('click', () => copier(btn, blocACopier(post.texte)));
+
+    bloc.append(d1, d2, c, d3, sig, btn);
+    feed.appendChild(bloc);
+  });
+}
+
+/* ===== COPIE ===== */
+async function copier(btn, texte){
+  try{
+    if(navigator.clipboard && window.isSecureContext){
+      await navigator.clipboard.writeText(texte);
+    }else{
+      const ta = document.createElement('textarea');
+      ta.value = texte; ta.style.position='fixed'; ta.style.opacity='0';
+      document.body.appendChild(ta); ta.select();
+      document.execCommand('copy'); document.body.removeChild(ta);
+    }
+    const ancien = btn.textContent;
+    btn.textContent = '[ ✓ COPIÉ ]'; btn.classList.add('copie');
+    setTimeout(() => { btn.textContent = ancien; btn.classList.remove('copie'); }, 1600);
+  }catch{ alert('Copie impossible.'); }
+}
+
+/* ===== CHARGEMENT ===== */
+async function charger(){
+  POSTS = await api.getPosts();
+  rendreFeed();
+  const m = await api.moi();
+  estAdmin = m.admin;
+}
+
+/* ===== TRANSITION ENTRÉE ===== */
+document.getElementById('btnEntrer').addEventListener('click', () => {
+  document.getElementById('flash').classList.add('actif');
+  document.getElementById('entree').classList.add('sortie');
+  setTimeout(() => document.getElementById('principal').classList.add('visible'), 450);
+  setTimeout(() => document.getElementById('flash').classList.remove('actif'), 900);
+});
+
+/* ===== MODALES ===== */
+function ouvrir(id){ document.getElementById(id).classList.add('actif'); }
+function fermer(id){ document.getElementById(id).classList.remove('actif'); }
+document.querySelectorAll('[data-fermer]').forEach(b => {
+  b.addEventListener('click', e => e.target.closest('.overlay').classList.remove('actif'));
+});
+
+/* ===== CADENAS ===== */
+document.getElementById('cadenas').addEventListener('click', () => {
+  if(estAdmin){ ouvrirDashboard(); }
+  else {
+    document.getElementById('inputMdp').value = '';
+    document.getElementById('errLogin').textContent = '';
+    ouvrir('overlayLogin');
+    setTimeout(() => document.getElementById('inputMdp').focus(), 100);
+  }
+});
+
+/* ===== LOGIN ===== */
+async function tenterLogin(){
+  const mdp = document.getElementById('inputMdp').value;
+  const err = document.getElementById('errLogin');
+  err.textContent = '';
+  if(!mdp){ err.textContent = 'Entre le mot de passe.'; return; }
+  const { ok, data } = await api.login(mdp);
+  if(!ok){ err.textContent = data.erreur || 'Erreur.'; return; }
+  estAdmin = true;
+  fermer('overlayLogin');
+  ouvrirDashboard();
+}
+document.getElementById('btnValiderLogin').addEventListener('click', tenterLogin);
+document.getElementById('inputMdp').addEventListener('keydown', e => {
+  if(e.key === 'Enter') tenterLogin();
+});
+
+/* ===== DASHBOARD ===== */
+async function ouvrirDashboard(){
+  await rafraichirListeAdmin();
+  reinitialiserFormulaire();
+  ouvrir('overlayDash');
+}
+
+function reinitialiserFormulaire(){
+  document.getElementById('zoneTexte').value = '';
+  document.getElementById('editId').value = '';
+  document.getElementById('btnPublier').textContent = 'PUBLIER';
+  document.getElementById('btnAnnulerEdit').style.display = 'none';
+  document.getElementById('errDash').textContent = '';
+}
+
+async function rafraichirListeAdmin(){
+  POSTS = await api.getPosts();
+  const cont = document.getElementById('listeAdmin');
+  cont.innerHTML = '';
+  if(POSTS.length === 0){
+    cont.innerHTML = '<p style="color:#7a6899;font-size:.8rem;text-align:center;font-style:italic;">Aucun post.</p>';
+    return;
+  }
+  POSTS.forEach(p => {
+    const div = document.createElement('div');
+    div.className = 'item-admin';
+
+    const apercu = document.createElement('div');
+    apercu.className = 'apercu';
+    apercu.textContent = p.texte.length > 160 ? p.texte.slice(0,160)+'…' : p.texte;
+
+    const btns = document.createElement('div');
+    btns.className = 'btns';
+
+    const bEdit = document.createElement('button');
+    bEdit.className = 'btn';
+    bEdit.textContent = 'MODIFIER';
+    bEdit.addEventListener('click', () => {
+      document.getElementById('zoneTexte').value = p.texte;
+      document.getElementById('editId').value = p.id;
+      document.getElementById('btnPublier').textContent = 'ENREGISTRER';
+      document.getElementById('btnAnnulerEdit').style.display = 'inline-block';
+      document.getElementById('zoneTexte').focus();
+    });
+
+    const bSup = document.createElement('button');
+    bSup.className = 'btn danger';
+    bSup.textContent = 'SUPPRIMER';
+    bSup.addEventListener('click', async () => {
+      if(!confirm('Supprimer ce post définitivement ?')) return;
+      await api.supprimer(p.id);
+      await rafraichirListeAdmin();
+      await charger();
+    });
+
+    btns.append(bEdit, bSup);
+    div.append(apercu, btns);
+    cont.appendChild(div);
+  });
+}
+
+/* ===== PUBLIER / MODIFIER ===== */
+document.getElementById('btnPublier').addEventListener('click', async () => {
+  const texte = document.getElementById('zoneTexte').value;
+  const id = document.getElementById('editId').value;
+  const err = document.getElementById('errDash');
+  err.textContent = '';
+
+  if(!texte.trim()){ err.textContent = 'Le texte est vide.'; return; }
+
+  let res;
+  if(id) res = await api.modifier(id, texte);
+  else   res = await api.creer(texte);
+
+  if(!res.ok){ err.textContent = res.data.erreur || 'Erreur serveur.'; return; }
+
+  await rafraichirListeAdmin();
+  await charger();
+  reinitialiserFormulaire();
+});
+
+document.getElementById('btnAnnulerEdit').addEventListener('click', reinitialiserFormulaire);
+
+/* ===== LOGOUT ===== */
+document.getElementById('btnLogout').addEventListener('click', async () => {
+  await api.logout();
+  estAdmin = false;
+  fermer('overlayDash');
+});
+
+/* ===== INIT ===== */
+charger();
+</script>
+</body>
+</html>
